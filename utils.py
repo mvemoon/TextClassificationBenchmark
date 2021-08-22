@@ -10,6 +10,7 @@ import time
 import sys
 import logging
 import os,configparser,re
+import pickle
 
 def log_time_delta(func):
     @wraps(func)
@@ -49,6 +50,13 @@ def loadData(opt):
         
     TEXT.build_vocab(train, vectors=GloVe(name='6B', dim=300))
     LABEL.build_vocab(train)    
+    
+    with open("text_field.pt", 'wb') as f:
+        pickle.dump(TEXT, f)  
+        
+    with open("label_field.pt", 'wb') as f:
+        pickle.dump(LABEL, f)  
+    
     # print vocab information
     print('len(TEXT.vocab)', len(TEXT.vocab))
     print('TEXT.vocab.vectors.size()', TEXT.vocab.vectors.size())
