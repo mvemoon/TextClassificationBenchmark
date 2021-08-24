@@ -107,7 +107,7 @@ if __name__=="__main__":
 #    else:
 #        import dataHelper 
 #        train_iter, test_iter = dataHelper.loadData(opt)
-    if False:
+    if True:
         model=models.setup(opt)
         print(opt.model)
         if torch.cuda.is_available():
